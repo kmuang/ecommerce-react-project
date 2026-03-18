@@ -1,33 +1,26 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import ScrollVideo from './components/ScrollVideo'
 import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
+// main app layout — add new sections/components below ScrollVideo
+// to build out the rest of the store (product grid, cart, footer, etc)
 
+function App() {
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      {/* scroll-animated hero background — scrubs through the skateboard animation */}
+      <ScrollVideo />
+
+      {/* placeholder section — swap this out with product grid, categories, etc */}
+      <section className="content-section">
+        <h2>Featured Products</h2>
+        <p>Products coming soon...</p>
+      </section>
+
+      {/* add more sections here as needed:
+        <ProductGrid />
+        <About />
+        <Footer />
+      */}
     </>
   )
 }
