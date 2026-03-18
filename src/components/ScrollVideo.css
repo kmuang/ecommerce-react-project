@@ -27,8 +27,18 @@
   position: relative;
 }
 
+/* mask-image fades the edges out so there's no hard border visible.
+   the gradient goes from transparent -> solid -> transparent on all sides. */
 .scroll-video {
   width: 100%;
   height: auto;
   display: block;
+  -webkit-mask-image:
+    linear-gradient(to right,  transparent, black 40px, black calc(100% - 40px), transparent),
+    linear-gradient(to bottom, transparent, black 30px, black calc(100% - 30px), transparent);
+  mask-image:
+    linear-gradient(to right,  transparent, black 40px, black calc(100% - 40px), transparent),
+    linear-gradient(to bottom, transparent, black 30px, black calc(100% - 30px), transparent);
+  -webkit-mask-composite: destination-in;
+  mask-composite: intersect;
 }
