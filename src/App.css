@@ -1,0 +1,11 @@
+#root {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+/* offset fixed navbar height */
+.scroll-video-container {
+  margin-top: 64px;
+}
