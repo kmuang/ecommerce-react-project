@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react'
+import { collection, getDocs } from 'firebase/firestore'
+import { db } from '../firebase'
 import ProductCard from './ProductCard'
 import './ProductGrid.css'
 
@@ -9,9 +11,12 @@ export default function ProductGrid() {
   const [error, setError] = useState(null)
 
   useEffect(() => {
-    fetch('http://localhost:3001/api/products')
-      .then(res => res.json())
-      .then(data => { setProducts(data); setLoading(false) })
+    getDocs(collection(db, 'products'))
+      .then(snapshot => {
+        const data = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
+        setProducts(data)
+        setLoading(false)
+      })
       .catch(err => { setError(err.message); setLoading(false) })
   }, [])
 
