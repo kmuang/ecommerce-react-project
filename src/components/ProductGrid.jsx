@@ -1,13 +1,21 @@
-import { useState } from 'react'
-import products from '../data/products'
+import { useState, useEffect } from 'react'
 import ProductCard from './ProductCard'
 import './ProductGrid.css'
 
-const categories = ['All', ...new Set(products.map(p => p.category))]
-
 export default function ProductGrid() {
+  const [products, setProducts] = useState([])
   const [active, setActive] = useState('All')
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
 
+  useEffect(() => {
+    fetch('http://localhost:3001/api/products')
+      .then(res => res.json())
+      .then(data => { setProducts(data); setLoading(false) })
+      .catch(err => { setError(err.message); setLoading(false) })
+  }, [])
+
+  const categories = ['All', ...new Set(products.map(p => p.category))]
   const filtered = active === 'All' ? products : products.filter(p => p.category === active)
 
   return (
@@ -31,6 +39,8 @@ export default function ProductGrid() {
         </div>
 
         <div className="product-grid">
+          {loading && <p>Loading products...</p>}
+          {error && <p>Error: {error}</p>}
           {filtered.map(product => (
             <ProductCard key={product.id} product={product} />
           ))}
