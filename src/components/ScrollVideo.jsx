@@ -55,10 +55,10 @@ function ScrollVideo() {
 
     const handleScroll = () => {
       const rect = container.getBoundingClientRect()
+      // scrollHeight = how many pixels of scrolling the container provides
       const scrollHeight = container.offsetHeight - window.innerHeight
-      // offset by navbar height so animation starts on the first scroll
-      const scrolled = -rect.top + 64
-      const progress = Math.min(Math.max(scrolled / scrollHeight, 0), 1)
+      // progress goes from 0 (top of section) to 1 (scrolled past it)
+      const progress = Math.min(Math.max(-rect.top / scrollHeight, 0), 1)
       // map that 0-1 progress to a frame index
       const frameIndex = Math.min(
         Math.floor(progress * (FRAME_COUNT - 1)),
