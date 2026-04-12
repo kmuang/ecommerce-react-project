@@ -5,18 +5,7 @@
   text-align: center;
 }
 
-/* generic content section — reuse for product grids, about, etc */
-.content-section {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 4rem 2rem;
-  background-color: #fcfcfa;
-}
-
-.content-section h2 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
+/* offset fixed navbar height */
+.scroll-video-container {
+  margin-top: 64px;
 }
